@@ -107,7 +107,7 @@ button:hover, button:focus {
 body {
   color: #fff;
   background: #17181c;
-  font: 300 100px "Fira Sans", sans-serif;
+  font: 300 20px "Fira Sans", sans-serif;
   justify-content: center;
   align-content: center;
   align-items: center;
@@ -118,7 +118,7 @@ body {
 
 button {
   background: none;
-  border: 2px solid;
+  border: 5px solid;
   font: inherit;
   line-height: 1;
   margin: 0.5em;
