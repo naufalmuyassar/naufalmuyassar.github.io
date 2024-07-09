@@ -11,7 +11,13 @@
 */
 .fill:hover,
 .fill:focus {
-  box-shadow: inset 0 0 0 40em var(--hover);
+  box-shadow: inset 0 0 0 2em var(--hover);
+  border: none;
+  background-color: inherit;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
 }
 
 .pulse:hover,
