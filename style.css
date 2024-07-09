@@ -65,7 +65,7 @@ html {
   -webkit-text-size-adjust: 50%;
   -moz-tab-size: 4;
   -o-tab-size: 4;
-  tab-size: 40;
+  tab-size: 4;
   font-family: REM, sans-serif;
   font-feature-settings: normal;
   font-variation-settings: normal;
@@ -74,7 +74,7 @@ html {
 }
 body {
   margin: 0;
-  line-height: inherit;
+  min-height: 100%;
 }
 hr {
   height: 0;
