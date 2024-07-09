@@ -107,7 +107,7 @@ button:hover, button:focus {
 body {
   color: #fff;
   background: #17181c;
-  font: 300 80px "Fira Sans", sans-serif;
+  font: 300 60px "Fira Sans", sans-serif;
   justify-content: center;
   align-content: center;
   align-items: center;
@@ -126,7 +126,7 @@ button {
 }
 
 h1 {
-  font-weight: 180;
+  font-weight: 170;
 }
 
 code {
