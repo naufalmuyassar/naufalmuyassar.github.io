@@ -18,12 +18,11 @@
             align-items: center;
             background: #333;
             color: #fff;
-            padding: 35px;
+            padding: 40px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            position: relative;
         }
         .logo-container img {
-            width: 70px;
+            width: 80px;
             height: auto;
             margin-right: 10px;
         }
@@ -49,7 +48,7 @@
         }
         .button {
             display: inline-block;
-            padding: 10px 15px;
+            padding: 10px 20px;
             background: #28a745;
             color: white;
             border: none;
@@ -86,7 +85,7 @@
         .product img {
             width: 100%;
             height: auto;
-            max-height: 150px;
+            max-height: 140px;
             object-fit: cover;
             border-radius: 5px;
         }
@@ -141,7 +140,7 @@
                         <img src="${imageUrl}" alt="Produk ${i}">
                         <h3>Produk ${i}</h3>
                         <p><strong>Rp ${i * 100000}</strong></p>
-                        <input type="text" id="name${i}" class="buyer-name" placeholder="Nama">
+                        <input type="text" id="name${i}" class="buyer-name" placeholder="Nama Anda">
                         <input type="number" id="qty${i}" class="quantity" min="1" value="1">
                         <a href="#" class="button" onclick="sendToWhatsApp('Produk ${i}', 'Rp ${i * 100000}', 'qty${i}', 'name${i}', '${imageUrl}')">Beli Sekarang</a>
                     </div>
