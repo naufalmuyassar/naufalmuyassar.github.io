@@ -16,77 +16,39 @@
 </head>
   
 <body>
-  <div class="logo-container" id="logo-container">
+    <div class="logo-container" id="logo-container">
         <img src="https://naufalmuyassar.github.io/img/Logo%20KK.png" alt="Logo KK" class="w-48 h-48 animate-bounce">
     </div>
+    
     <div class="content" id="content">
-        <img src="https://naufalmuyassar.github.io/img/Logo%20KK.png" alt="Logo KK" class="mx-auto mb-4 w-32 h-32">
-        <h2 class="text-2xl font-bold text-gray-800">Welcome to Our Website</h2>
-        <p class="text-gray-600 mt-2">Explore our amazing content!</p>
+        <header class="Header">
+            <div class="Header-inner">
+                <div class="logo">
+                    <img src="https://naufalmuyassar.github.io/img/Logo%20KK.png" alt="Logo KK">
+                </div>
+                <nav class="Header-nav">
+                    <a href="https://naufalmuyassar.github.io/menu/about/index.html">About</a>
+                    <a href="https://naufalmuyassar.github.io/menu/products/index.html">Products</a>
+                    <a href="https://naufalmuyassar.github.io/menu/contact/index.html">Contact</a>
+                </nav>
+            </div>
+        </header>
+        
+        <h2 class="text-2xl font-bold">Welcome to Our Website</h2>
+        <p class="text-gray-300 mt-2">Explore our amazing content!</p>
+        
+        <div class="container">
+            <div class="card" style="background-image: url(https://picsum.photos/1920/1080?1);"></div>
+            <div class="card" style="background-image: url(https://picsum.photos/1920/1080?2);"></div>
+            <div class="card" style="background-image: url(https://picsum.photos/1920/1080?3);"></div>
+        </div>
     </div>
+    
     <script>
         setTimeout(() => {
             document.getElementById("logo-container").style.display = "none";
             document.getElementById("content").style.display = "block";
         }, 3000);
     </script>
-  
-<!-- partial:index.partial.html -->
-<div class="MobileNav" data-mobile-nav>
-  <div class="MobileNav-overlay" data-mobile-nav-overlay></div>
-  <div class="MobileNav-inner">
-    <div class="MobileNav-trigger" data-mobile-nav-trigger>
-      <div class="MobileNav-trigger-inner"></div>
-    </div>
-    <ul class="MobileNav-nav" data-mobile-nav-list>
-      <li class="MobileNav-item" data-mobile-nav-item="1">
-        <div class="MobileNav-item-title">
-          <a href="#">About</a>
-        </div>
-      </li>
-      <li class="MobileNav-item" data-mobile-nav-item="2">
-        <div class="MobileNav-item-title">
-          <a href="#">Products</a>
-        </div>
-      </li>
-      <li class="MobileNav-item" data-mobile-nav-item="3">
-        <div class="MobileNav-item-title">
-          <a href="#">Contact</a>
-        </div>
-      </li>
-    </ul>
-  </div>
-</div>
-
-<header class="Header" data-header>
-  <div class="Header-inner" data-header-nav>
-    <div class="logo">
-      <img src="https://naufalmuyassar.github.io/img/Logo%20KK.png" alt="">
-    </div>
-    <nav class="Header-nav" data-nav>
-      <div class="Header-nav-item" data-nav-item="1">
-        <a href="https://naufalmuyassar.github.io/menu/about/index.html">About</a>
-      </div>
-      <div class="Header-nav-item" data-nav-item="2">
-        <a href="https://naufalmuyassar.github.io/menu/products/index.html">Products</a>
-      </div>
-      <div class="Header-nav-item" data-nav-item="3">
-        <a href="https://naufalmuyassar.github.io/menu/contact/index.html">Contact</a>
-      </div>
-    </nav>
-    <button class="MobileNav-trigger" data-mobile-nav-trigger>
-      <div class="MobileNav-trigger-inner"></div>
-    </button>
-  </div>
-</header>
-
-<div class="container">
-  <div class="card" style="background-image: url(https://picsum.photos/1920/1080?1);"></div>
-  <div class="card" style="background-image: url(https://picsum.photos/1920/1080?2);"></div>
-  <div class="card" style="background-image: url(https://picsum.photos/1920/1080?3);"></div>
-</div>
-<!-- partial -->
-  <script src='https://cdn.jsdelivr.net/npm/resize-observer-polyfill@1.5.1/dist/ResizeObserver.min.js'></script><script  src="./script.js"></script>
-
 </body>
 </html>
