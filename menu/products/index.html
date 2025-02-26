@@ -98,16 +98,29 @@
             font-weight: bold;
             color: #333;
         }
+        .buyer-name {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+            border: 2px solid #333;
+            border-radius: 5px;
+            font-size: 16px;
+        }
     </style>
     <script>
-        function sendToWhatsApp(productName, price, inputId) {
-            var quantity = document.getElementById(inputId).value;
-            if (quantity < 1) {
-                alert("Masukkan jumlah produk yang valid");
+        function sendToWhatsApp(productName, price, inputId, nameId) {
+            var quantity = parseInt(document.getElementById(inputId).value);
+            var buyerName = document.getElementById(nameId).value.trim();
+            if (!buyerName) {
+                alert("Silakan masukkan nama Anda.");
+                return;
+            }
+            if (isNaN(quantity) || quantity < 1) {
+                alert("Masukkan jumlah produk yang valid.");
                 return;
             }
             var whatsappNumber = "+62089678428381";
-            var message = `Halo, saya ingin membeli ${quantity}x ${productName} dengan harga ${price}.`;
+            var message = `Halo, saya ${buyerName} ingin membeli ${quantity}x ${productName} dengan harga ${price}.`;
             var whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappURL, '_blank');
         }
@@ -124,41 +137,20 @@
         <button class="menu-button">☰</button>
     </header>
     <section class="products">
-        <div class="product">
-            <img src="https://naufalmuyassar.github.io/img/prodak/prodak1.jpg" alt="Product 1">
-            <h3>Produk 1</h3>
-            <p><strong>Rp 100.000</strong></p>
-            <input type="number" id="qty1" class="quantity" min="1" value="1">
-            <a href="#" class="buy-button" onclick="sendToWhatsApp('Produk 1', 'Rp 100.000', 'qty1')">Beli Sekarang</a>
-        </div>
-        <div class="product">
-            <img src="https://naufalmuyassar.github.io/img/prodak/prodak2.jpg" alt="Product 2">
-            <h3>Produk 2</h3>
-            <p><strong>Rp 150.000</strong></p>
-            <input type="number" id="qty2" class="quantity" min="1" value="1">
-            <a href="#" class="buy-button" onclick="sendToWhatsApp('Produk 2', 'Rp 150.000', 'qty2')">Beli Sekarang</a>
-        </div>
-        <div class="product">
-            <img src="https://naufalmuyassar.github.io/img/prodak/prodak3.jpg" alt="Product 3">
-            <h3>Produk 3</h3>
-            <p><strong>Rp 200.000</strong></p>
-            <input type="number" id="qty3" class="quantity" min="1" value="1">
-            <a href="#" class="buy-button" onclick="sendToWhatsApp('Produk 3', 'Rp 200.000', 'qty3')">Beli Sekarang</a>
-        </div>
-        <div class="product">
-            <img src="https://naufalmuyassar.github.io/img/prodak/prodak4.jpg" alt="Product 4">
-            <h3>Produk 4</h3>
-            <p><strong>Rp 250.000</strong></p>
-            <input type="number" id="qty4" class="quantity" min="1" value="1">
-            <a href="#" class="buy-button" onclick="sendToWhatsApp('Produk 4', 'Rp 250.000', 'qty4')">Beli Sekarang</a>
-        </div>
-        <div class="product">
-            <img src="https://naufalmuyassar.github.io/img/prodak/prodak5.jpg" alt="Product 5">
-            <h3>Produk 5</h3>
-            <p><strong>Rp 300.000</strong></p>
-            <input type="number" id="qty5" class="quantity" min="1" value="1">
-            <a href="#" class="buy-button" onclick="sendToWhatsApp('Produk 5', 'Rp 300.000', 'qty5')">Beli Sekarang</a>
-        </div>
+        <script>
+            for (let i = 1; i <= 5; i++) {
+                document.write(`
+                    <div class="product">
+                        <img src="https://naufalmuyassar.github.io/img/prodak/produk${i}.jpg" alt="Produk ${i}">
+                        <h3>Produk ${i}</h3>
+                        <p><strong>Rp ${i * 100000}</strong></p>
+                        <input type="text" id="name${i}" class="buyer-name" placeholder="Nama Anda">
+                        <input type="number" id="qty${i}" class="quantity" min="1" value="1">
+                        <a href="#" class="buy-button" onclick="sendToWhatsApp('Produk ${i}', 'Rp ${i * 100000}', 'qty${i}', 'name${i}')">Beli Sekarang</a>
+                    </div>
+                `);
+            }
+        </script>
     </section>
 </body>
 </html>
