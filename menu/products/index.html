@@ -23,7 +23,7 @@
             position: relative;
         }
         .logo-container img {
-            width: 40px;
+            width: 30px;
             height: auto;
             margin-right: 10px;
         }
@@ -44,7 +44,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             text-align: center;
-            width: 300px;
+            width: 280px;
             animation: fadeIn 0.3s ease-in-out;
         }
         .popup button {
@@ -62,25 +62,37 @@
         }
         .products {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 20px;
-            max-width: 1200px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            padding: 15px;
+            max-width: 1000px;
             margin: auto;
         }
         .product {
             background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
             text-align: center;
         }
         .product img {
             width: 100%;
             height: auto;
-            max-height: 180px;
+            max-height: 150px;
             object-fit: cover;
             border-radius: 5px;
+        }
+        .buy-button {
+            display: inline-block;
+            margin-top: 10px;
+            background: #28a745;
+            color: white;
+            text-align: center;
+            padding: 8px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            width: 100%;
         }
     </style>
     <script>
@@ -105,7 +117,7 @@
                 return;
             }
             var whatsappNumber = "62089678428381";
-            var message = `Halo, saya ${buyerName} ingin membeli ${quantity}x ${productName} dengan harga ${price}. Ini contohnya: ${imageUrl}`;
+            var message = `Halo, saya ${buyerName} ingin membeli ${quantity}x ${productName} dengan harga ${price}. Ini contoh produknya: ${imageUrl}`;
             var whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappURL, '_blank');
         }
@@ -133,7 +145,7 @@
                         <img src="${imageUrl}" alt="Produk ${i}">
                         <h3>Produk ${i}</h3>
                         <p><strong>Rp ${i * 100000}</strong></p>
-                        <input type="text" id="name${i}" class="buyer-name" placeholder="Nama">
+                        <input type="text" id="name${i}" class="buyer-name" placeholder="Nama Anda">
                         <input type="number" id="qty${i}" class="quantity" min="1" value="1">
                         <a href="#" class="buy-button" onclick="sendToWhatsApp('Produk ${i}', 'Rp ${i * 100000}', 'qty${i}', 'name${i}', '${imageUrl}')">Beli</a>
                     </div>
