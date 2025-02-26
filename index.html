@@ -20,12 +20,20 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        .typing::after {
+            content: '|';
+            display: inline-block;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
     </style>
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
     <div id="logo-container" class="flex flex-col justify-center items-center h-screen">
         <img src="https://naufalmuyassar.github.io/img/Logo%20KK.png" alt="Logo KK" class="w-48 h-48 animate-bounce">
-        <p class="text-xl font-semibold mt-4 fade-in">Sablon Bersama Kami</p>
+        <p id="typing-text" class="text-xl font-semibold mt-4"></p>
     </div>
     
     <div id="content" class="hidden text-center p-6">
@@ -43,7 +51,7 @@
         <h2 class="text-2xl font-bold">Welcome to Our Website</h2>
         <p class="text-gray-300 mt-2">Explore our amazing content!</p>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+        <div class="grid grid-cols-1 md-grid-cols-3 gap-4 mt-6">
             <div class="w-72 h-44 bg-cover rounded-lg shadow-lg" style="background-image: url(https://picsum.photos/400/300?1);"></div>
             <div class="w-72 h-44 bg-cover rounded-lg shadow-lg" style="background-image: url(https://picsum.photos/400/300?2);"></div>
             <div class="w-72 h-44 bg-cover rounded-lg shadow-lg" style="background-image: url(https://picsum.photos/400/300?3);"></div>
@@ -51,6 +59,20 @@
     </div>
     
     <script>
+        const text = "Sablon Bersama Kami";
+        let index = 0;
+        function typeWriter() {
+            if (index < text.length) {
+                document.getElementById("typing-text").innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+        
+        setTimeout(() => {
+            typeWriter();
+        }, 500);
+        
         setTimeout(() => {
             document.getElementById("logo-container").classList.add("fade-out");
             setTimeout(() => {
