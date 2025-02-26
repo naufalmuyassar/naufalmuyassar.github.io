@@ -81,6 +81,24 @@
             margin-top: 10px;
         }
     </style>
+    <script>
+        function sendToWhatsApp(productName, price, inputId, nameId, imageUrl) {
+            var quantity = parseInt(document.getElementById(inputId).value);
+            var buyerName = document.getElementById(nameId).value.trim();
+            if (!buyerName) {
+                alert("Masukkan nama Anda");
+                return;
+            }
+            if (isNaN(quantity) || quantity < 1) {
+                alert("Jumlah produk tidak valid");
+                return;
+            }
+            var whatsappNumber = "62089678428381";
+            var message = `Halo, saya ${buyerName} ingin membeli ${quantity}x ${productName} dengan harga ${price}. Ini produknya: ${imageUrl}`;
+            var whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -95,11 +113,13 @@
         <script>
             for (let i = 1; i <= 5; i++) {
                 let imageUrl = `https://naufalmuyassar.github.io/img/prodak/prodak${i}.jpg`;
+                let category = `Kategori ${i}`;
                 document.write(`
                     <div class="product">
                         <img src="${imageUrl}" alt="Produk ${i}" onclick="showImagePopup('${imageUrl}')">
                         <h3>Produk ${i}</h3>
                         <p><strong>Rp ${i * 100000}</strong></p>
+                        <p>Kategori: ${category}</p>
                         <input type="text" id="name${i}" class="buyer-name" placeholder="Nama Anda">
                         <input type="number" id="qty${i}" class="quantity" min="1" value="1">
                         <a href="#" class="button" onclick="sendToWhatsApp('Produk ${i}', 'Rp ${i * 100000}', 'qty${i}', 'name${i}', '${imageUrl}')">Beli Sekarang</a>
