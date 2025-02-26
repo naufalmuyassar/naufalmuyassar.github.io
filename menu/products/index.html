@@ -28,6 +28,7 @@
             list-style: none;
             display: flex;
             gap: 20px;
+            padding: 0;
         }
         nav a {
             color: white;
@@ -38,6 +39,7 @@
         }
         .menu {
             display: flex;
+            flex-wrap: wrap;
             gap: 10px;
             padding: 10px;
             background: #c00;
@@ -55,7 +57,7 @@
         }
         .products {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
             padding: 20px;
         }
@@ -76,6 +78,21 @@
         }
         strong {
             color: red;
+        }
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px 0;
+            }
+            .menu {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
 </head>
