@@ -119,7 +119,7 @@
                 alert("Masukkan jumlah produk yang valid.");
                 return;
             }
-            var whatsappNumber = "+62089678428381";
+            var whatsappNumber = "62089678428381";
             var message = `Halo, saya ${buyerName} ingin membeli ${quantity}x ${productName} dengan harga ${price}.`;
             var whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappURL, '_blank');
@@ -141,7 +141,7 @@
             for (let i = 1; i <= 5; i++) {
                 document.write(`
                     <div class="product">
-                        <img src="https://naufalmuyassar.github.io/img/prodak${i}.jpg" alt="Produk ${i}">
+                        <img src="https://naufalmuyassar.github.io/img/prodak/prodak${i}.jpg" alt="Produk ${i}">
                         <h3>Produk ${i}</h3>
                         <p><strong>Rp ${i * 100000}</strong></p>
                         <input type="text" id="name${i}" class="buyer-name" placeholder="Nama Anda">
