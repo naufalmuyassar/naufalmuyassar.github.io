@@ -25,18 +25,18 @@
             top: 0;
             left: 0;
             z-index: 1000;
-            height: 70px; /* Sesuaikan tinggi navbar */
+            height: 70px;
         }
         .logo-container {
             display: flex;
             align-items: center;
         }
         .logo-container img {
-            width: 90px; /* Ukuran logo lebih kecil */
+            width: 80px;
             height: auto;
             margin-right: 10px;
         }
-        .popup-overlay {
+        .popup-overlay, .image-popup-overlay {
             position: fixed;
             top: 0;
             left: 0;
@@ -47,14 +47,17 @@
             justify-content: center;
             align-items: center;
         }
-        .popup {
+        .popup, .image-popup {
             background: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             text-align: center;
-            width: 280px;
-            animation: fadeIn 0.3s ease-in-out;
+        }
+        .image-popup img {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 8px;
         }
         .button {
             display: inline-block;
@@ -68,23 +71,18 @@
             font-size: 16px;
             text-decoration: none;
             font-weight: bold;
-            width: auto;
         }
         .button:hover {
             background: #218838;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
         .products {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
             padding: 15px;
             max-width: 1000px;
             margin: auto;
-            margin-top: 90px; /* Tambah margin agar tidak tertutup navbar */
+            margin-top: 90px;
         }
         .product {
             background: white;
@@ -96,9 +94,10 @@
         .product img {
             width: 100%;
             height: auto;
-            max-height: 140px;
+            max-height: 160px;
             object-fit: cover;
             border-radius: 5px;
+            cursor: pointer;
         }
     </style>
     <script>
@@ -127,6 +126,15 @@
             var whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappURL, '_blank');
         }
+        function showImagePopup(imageUrl) {
+            let imagePopupOverlay = document.getElementById("image-popup-overlay");
+            let imagePopup = document.getElementById("image-popup");
+            imagePopup.innerHTML = `<img src="${imageUrl}" alt="Produk"> <br><button class='button' onclick="closeImagePopup()">Tutup</button>`;
+            imagePopupOverlay.style.display = "flex";
+        }
+        function closeImagePopup() {
+            document.getElementById("image-popup-overlay").style.display = "none";
+        }
     </script>
 </head>
 <body>
@@ -141,13 +149,16 @@
     <div id="popup-overlay" class="popup-overlay">
         <div id="popup" class="popup"></div>
     </div>
+    <div id="image-popup-overlay" class="image-popup-overlay" onclick="closeImagePopup()">
+        <div id="image-popup" class="image-popup"></div>
+    </div>
     <section class="products">
         <script>
             for (let i = 1; i <= 5; i++) {
                 let imageUrl = `https://naufalmuyassar.github.io/img/prodak/prodak${i}.jpg`;
                 document.write(`
                     <div class="product">
-                        <img src="${imageUrl}" alt="Produk ${i}">
+                        <img src="${imageUrl}" alt="Produk ${i}" onclick="showImagePopup('${imageUrl}')">
                         <h3>Produk ${i}</h3>
                         <p><strong>Rp ${i * 100000}</strong></p>
                         <input type="text" id="name${i}" class="buyer-name" placeholder="Nama Anda">
