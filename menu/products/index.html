@@ -18,17 +18,13 @@
             align-items: center;
             background: #333;
             color: #fff;
-            padding: 30px;
+            padding: 20px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
             top: 0;
             left: 0;
             z-index: 1000;
-        }
-        .logo-container {
-            display: flex;
-            align-items: center;
         }
         .logo-container img {
             width: 110px;
@@ -63,18 +59,18 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            text-align: center;
             font-size: 16px;
-            text-decoration: none;
             font-weight: bold;
-            width: auto;
         }
         .button:hover {
             background: #218838;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
         .products {
             display: grid;
@@ -121,11 +117,31 @@
                 showPopup("Jumlah produk tidak valid");
                 return;
             }
-            var whatsappNumber = "62089678428381";
+            var whatsappNumber = "6289678428381";
             var message = `Halo, saya ${buyerName} ingin membeli ${quantity}x ${productName} dengan harga ${price}. Ini produknya: ${imageUrl}`;
-            var whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-            window.open(whatsappURL, '_blank');
+            if (confirm(`Kirim pesanan ini ke WhatsApp?\n\n${message}`)) {
+                var whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+                window.open(whatsappURL, '_blank');
+            }
         }
+        document.addEventListener("DOMContentLoaded", function () {
+            let productContainer = document.querySelector(".products");
+            let productsHTML = "";
+            for (let i = 1; i <= 5; i++) {
+                let imageUrl = `https://naufalmuyassar.github.io/img/prodak/prodak${i}.jpg`;
+                productsHTML += `
+                    <div class="product">
+                        <img src="${imageUrl}" alt="Produk ${i}">
+                        <h3>Produk ${i}</h3>
+                        <p><strong>Rp ${i * 100000}</strong></p>
+                        <input type="text" id="name${i}" class="buyer-name" placeholder="Nama Anda">
+                        <input type="number" id="qty${i}" class="quantity" min="1" value="1">
+                        <button class="button" onclick="sendToWhatsApp('Produk ${i}', 'Rp ${i * 100000}', 'qty${i}', 'name${i}', '${imageUrl}')">Beli Sekarang</button>
+                    </div>
+                `;
+            }
+            productContainer.innerHTML = productsHTML;
+        });
     </script>
 </head>
 <body>
@@ -140,22 +156,6 @@
     <div id="popup-overlay" class="popup-overlay">
         <div id="popup" class="popup"></div>
     </div>
-    <section class="products">
-        <script>
-            for (let i = 1; i <= 5; i++) {
-                let imageUrl = `https://naufalmuyassar.github.io/img/prodak/prodak${i}.jpg`;
-                document.write(`
-                    <div class="product">
-                        <img src="${imageUrl}" alt="Produk ${i}">
-                        <h3>Produk ${i}</h3>
-                        <p><strong>Rp ${i * 100000}</strong></p>
-                        <input type="text" id="name${i}" class="buyer-name" placeholder="Nama Anda">
-                        <input type="number" id="qty${i}" class="quantity" min="1" value="1">
-                        <a href="#" class="button" onclick="sendToWhatsApp('Produk ${i}', 'Rp ${i * 100000}', 'qty${i}', 'name${i}', '${imageUrl}')">Beli Sekarang</a>
-                    </div>
-                `);
-            }
-        </script>
-    </section>
+    <section class="products"></section>
 </body>
 </html>
