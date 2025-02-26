@@ -71,7 +71,7 @@
         strong {
             color: #d32f2f;
         }
-        .buy-button {
+        .buy-button, .update-button {
             display: block;
             margin-top: 10px;
             background: #28a745;
@@ -82,8 +82,14 @@
             text-decoration: none;
             font-weight: bold;
         }
-        .buy-button:hover {
+        .buy-button:hover, .update-button:hover {
             background: #218838;
+        }
+        .update-button {
+            background: #007bff;
+        }
+        .update-button:hover {
+            background: #0056b3;
         }
     </style>
 </head>
@@ -122,6 +128,9 @@
             <strong>&pound;15.50</strong>
             <a href="#" class="buy-button">Buy Now</a>
         </div>
+    </section>
+    <section style="text-align: center; margin: 20px;">
+        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20update%20produk%20di%20toko%20online" class="update-button">Update Produk via WhatsApp</a>
     </section>
 </body>
 </html>
