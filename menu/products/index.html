@@ -163,10 +163,10 @@
     <div class="overlay" id="overlay" onclick="hideOrderForm()"></div>
     <div class="order-form" id="orderForm">
         <h3>Formulir Pesanan</h3>
-        <input type="text" placeholder="Nama" required>
-        <input type="text" placeholder="Alamat" required>
-        <textarea placeholder="Pesanan" required></textarea>
-        <button onclick="hideOrderForm()">Kirim Pesanan</button>
+        <input type="text" id="name" placeholder="Nama" required>
+        <input type="text" id="address" placeholder="Alamat" required>
+        <textarea id="order" placeholder="Pesanan" required></textarea>
+        <button onclick="sendOrder()">Kirim Pesanan</button>
     </div>
     <script>
         function showOrderForm() {
@@ -176,6 +176,13 @@
         function hideOrderForm() {
             document.getElementById('orderForm').style.display = 'none';
             document.getElementById('overlay').style.display = 'none';
+        }
+        function sendOrder() {
+            let name = document.getElementById('name').value;
+            let address = document.getElementById('address').value;
+            let order = document.getElementById('order').value;
+            let whatsappURL = `https://wa.me/089678429391?text=Nama:%20${name}%0AAlamat:%20${address}%0APesanan:%20${order}`;
+            window.open(whatsappURL, '_blank');
         }
     </script>
 </body>
