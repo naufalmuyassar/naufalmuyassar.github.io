@@ -94,12 +94,6 @@
         .buy-button:hover, .update-button:hover {
             background: #218838;
         }
-        .update-button {
-            background: #007bff;
-        }
-        .update-button:hover {
-            background: #0056b3;
-        }
         .order-form {
             display: none;
             position: fixed;
@@ -156,6 +150,32 @@
             z-index: 999;
         }
     </style>
+    <script>
+        function showOrderForm() {
+            document.getElementById('orderForm').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+        
+        function hideOrderForm() {
+            document.getElementById('orderForm').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+        
+        function sendOrder() {
+            var name = document.getElementById('name').value;
+            var address = document.getElementById('address').value;
+            var order = document.getElementById('order').value;
+            
+            if (!name || !address || !order) {
+                alert("Harap isi semua kolom!");
+                return;
+            }
+            
+            var message = `Halo, saya ingin memesan:\n\nNama: ${name}\nAlamat: ${address}\nPesanan: ${order}`;
+            var whatsappURL = `https://wa.me/628967848381?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -167,13 +187,6 @@
         </div>
         <a href="#" class="cart-button" onclick="showOrderForm()">Tambah Pesanan 🛒</a>
     </header>
-    <section class="products">
-        <div class="product"><div class="image-placeholder"></div><p>Product 1</p><strong>$10.00</strong><a href="#" class="buy-button">Buy Now</a></div>
-        <div class="product"><div class="image-placeholder"></div><p>Product 2</p><strong>$15.00</strong><a href="#" class="buy-button">Buy Now</a></div>
-        <div class="product"><div class="image-placeholder"></div><p>Product 3</p><strong>$20.00</strong><a href="#" class="buy-button">Buy Now</a></div>
-        <div class="product"><div class="image-placeholder"></div><p>Product 4</p><strong>$25.00</strong><a href="#" class="buy-button">Buy Now</a></div>
-        <div class="product"><div class="image-placeholder"></div><p>Product 5</p><strong>$30.00</strong><a href="#" class="buy-button">Buy Now</a></div>
-    </section>
     <div class="overlay" id="overlay" onclick="hideOrderForm()"></div>
     <div class="order-form" id="orderForm">
         <button class="close-button" onclick="hideOrderForm()">X</button>
