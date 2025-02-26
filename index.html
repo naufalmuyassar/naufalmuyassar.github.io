@@ -31,13 +31,17 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .typing::after {
-            content: '|';
-            display: inline-block;
-            animation: blink 0.7s infinite;
+        .typing {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #ff8a00, #e52e71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 1.5s infinite alternate;
         }
-        @keyframes blink {
-            50% { opacity: 0; }
+        @keyframes glow {
+            from { text-shadow: 0 0 10px rgba(255, 138, 0, 0.7); }
+            to { text-shadow: 0 0 20px rgba(229, 46, 113, 0.7); }
         }
         .slider {
             display: flex;
@@ -71,7 +75,7 @@
 <body>
     <div id="logo-container" class="flex flex-col justify-center items-center h-screen">
         <img src="https://naufalmuyassar.github.io/img/Logo%20KK.png" alt="Logo KK" class="w-48 h-48 animate-bounce">
-        <p id="typing-text" class="text-xl font-semibold mt-4"></p>
+        <p id="typing-text" class="typing mt-4"></p>
     </div>
     
     <div id="content" class="hidden text-center p-6">
