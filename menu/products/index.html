@@ -122,7 +122,7 @@
                 return;
             }
             var whatsappNumber = "62089678428381";
-            var message = `Halo, saya ${buyerName} ingin membeli ${quantity}x ${productName} dengan harga ${price}.%0A${imageUrl}`;
+            var message = `Halo, saya ${buyerName} ingin membeli ${quantity}x ${productName} dengan harga ${price}. Ini contohnya: ${imageUrl}`;
             var whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappURL, '_blank');
         }
