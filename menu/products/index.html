@@ -97,11 +97,11 @@
             var quantity = parseInt(document.getElementById(inputId).value);
             var buyerName = document.getElementById(nameId).value.trim();
             if (!buyerName) {
-                showPopup("Silakan masukkan nama Anda.");
+                showPopup("Masukkan nama Anda");
                 return;
             }
             if (isNaN(quantity) || quantity < 1) {
-                showPopup("Masukkan jumlah produk yang valid.");
+                showPopup("Jumlah produk tidak valid");
                 return;
             }
             var whatsappNumber = "62089678428381";
@@ -133,9 +133,9 @@
                         <img src="${imageUrl}" alt="Produk ${i}">
                         <h3>Produk ${i}</h3>
                         <p><strong>Rp ${i * 100000}</strong></p>
-                        <input type="text" id="name${i}" class="buyer-name" placeholder="Nama Anda">
+                        <input type="text" id="name${i}" class="buyer-name" placeholder="Nama">
                         <input type="number" id="qty${i}" class="quantity" min="1" value="1">
-                        <a href="#" class="buy-button" onclick="sendToWhatsApp('Produk ${i}', 'Rp ${i * 100000}', 'qty${i}', 'name${i}', '${imageUrl}')">Beli Sekarang</a>
+                        <a href="#" class="buy-button" onclick="sendToWhatsApp('Produk ${i}', 'Rp ${i * 100000}', 'qty${i}', 'name${i}', '${imageUrl}')">Beli</a>
                     </div>
                 `);
             }
