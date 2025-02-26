@@ -69,6 +69,19 @@
             display: inline-block;
             width: 100%;
             margin-top: 10px;
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+        .notification {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
         }
         #imagePopup {
             display: none;
@@ -88,14 +101,20 @@
         function sendToWhatsApp(productName, price, inputId, nameId, imageUrl) {
             var quantity = parseInt(document.getElementById(inputId).value);
             var buyerName = document.getElementById(nameId).value.trim();
+            var notification = document.getElementById(nameId + "-notification");
+            
             if (!buyerName) {
-                alert("Nama harus dimasukkan! Silakan isi nama Anda sebelum melanjutkan.");
+                notification.innerText = "Nama harus dimasukkan!";
                 return;
+            } else {
+                notification.innerText = "";
             }
+            
             if (isNaN(quantity) || quantity < 1) {
                 alert("Jumlah produk tidak valid");
                 return;
             }
+            
             var whatsappNumber = "62089678428381";
             var message = `Halo, saya ${buyerName} ingin membeli ${quantity}x ${productName} dengan harga ${price}. Ini produknya: ${imageUrl}`;
             var whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
@@ -129,6 +148,7 @@
                         <h3>Produk ${i}</h3>
                         <p><strong>Rp ${i * 100000}</strong></p>
                         <input type="text" id="name${i}" class="buyer-name" placeholder="Nama Anda">
+                        <div id="name${i}-notification" class="notification"></div>
                         <input type="number" id="qty${i}" class="quantity" min="1" value="1">
                         <a href="#" class="button" onclick="sendToWhatsApp('Produk ${i}', 'Rp ${i * 100000}', 'qty${i}', 'name${i}', '${imageUrl}')">Beli Sekarang</a>
                     </div>
