@@ -22,103 +22,46 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             position: relative;
         }
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
-        .logo-container img {
-            width: 50px;
-            height: auto;
-            margin-right: 10px;
-            cursor: pointer;
-        }
-        .logo {
-            font-size: 26px;
-            font-weight: bold;
-        }
-        .menu-button {
-            display: none;
-            font-size: 24px;
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-        }
-        @media (max-width: 768px) {
-            .menu-button {
-                display: block;
-            }
-        }
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            padding: 20px;
-            max-width: 1000px;
-            margin: auto;
-        }
-        .product {
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             background: white;
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            display: none;
             text-align: center;
         }
-        .product:hover {
-            transform: scale(1.03);
-        }
-        .product img {
-            width: 100%;
-            height: auto;
-            max-height: 180px;
-            object-fit: cover;
-            border-radius: 5px;
-        }
-        .buy-button {
-            display: block;
-            margin-top: 8px;
+        .popup button {
+            margin-top: 10px;
+            padding: 8px 16px;
             background: #28a745;
             color: white;
-            text-align: center;
-            padding: 8px;
+            border: none;
             border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .buy-button:hover {
-            background: #218838;
-        }
-        .quantity {
-            width: 60px;
-            text-align: center;
-            margin-top: 8px;
-            padding: 6px;
-            border: 2px solid #28a745;
-            border-radius: 5px;
-            font-size: 14px;
-            font-weight: bold;
-            color: #333;
-        }
-        .buyer-name {
-            width: 100%;
-            padding: 6px;
-            margin-top: 8px;
-            border: 2px solid #333;
-            border-radius: 5px;
-            font-size: 14px;
+            cursor: pointer;
         }
     </style>
     <script>
+        function showPopup(message) {
+            let popup = document.getElementById("popup");
+            popup.innerHTML = `<p>${message}</p><button onclick=\"closePopup()\">OK</button>`;
+            popup.style.display = "block";
+        }
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
         function sendToWhatsApp(productName, price, inputId, nameId, imageUrl) {
             var quantity = parseInt(document.getElementById(inputId).value);
             var buyerName = document.getElementById(nameId).value.trim();
             if (!buyerName) {
-                alert("Silakan masukkan nama Anda.");
+                showPopup("Silakan masukkan nama Anda.");
                 return;
             }
             if (isNaN(quantity) || quantity < 1) {
-                alert("Masukkan jumlah produk yang valid.");
+                showPopup("Masukkan jumlah produk yang valid.");
                 return;
             }
             var whatsappNumber = "62089678428381";
@@ -138,6 +81,7 @@
         </div>
         <button class="menu-button">☰</button>
     </header>
+    <div id="popup" class="popup"></div>
     <section class="products">
         <script>
             for (let i = 1; i <= 5; i++) {
