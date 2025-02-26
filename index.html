@@ -29,18 +29,12 @@
         @keyframes blink {
             50% { opacity: 0; }
         }
-        .clock {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-top: 10px;
-        }
     </style>
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
     <div id="logo-container" class="flex flex-col justify-center items-center h-screen">
         <img src="https://naufalmuyassar.github.io/img/Logo%20KK.png" alt="Logo KK" class="w-48 h-48 animate-bounce">
         <p id="typing-text" class="text-xl font-semibold mt-4"></p>
-        <p id="clock" class="clock"></p>
     </div>
     
     <div id="content" class="hidden text-center p-6">
@@ -75,14 +69,6 @@
                 setTimeout(typeWriter, 100);
             }
         }
-        
-        function updateClock() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString();
-            document.getElementById("clock").textContent = timeString;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
         
         setTimeout(() => {
             typeWriter();
