@@ -51,35 +51,37 @@
         }
         .products {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
             padding: 20px;
-            max-width: 1200px;
+            max-width: 1000px;
             margin: auto;
         }
         .product {
             background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: transform 0.3s;
             text-align: center;
         }
         .product:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
         .product img {
             width: 100%;
             height: auto;
+            max-height: 180px;
+            object-fit: cover;
             border-radius: 5px;
         }
         .buy-button {
             display: block;
-            margin-top: 10px;
+            margin-top: 8px;
             background: #28a745;
             color: white;
             text-align: center;
-            padding: 10px;
+            padding: 8px;
             border-radius: 5px;
             text-decoration: none;
             font-weight: bold;
@@ -88,27 +90,27 @@
             background: #218838;
         }
         .quantity {
-            width: 70px;
+            width: 60px;
             text-align: center;
-            margin-top: 10px;
-            padding: 8px;
+            margin-top: 8px;
+            padding: 6px;
             border: 2px solid #28a745;
             border-radius: 5px;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
             color: #333;
         }
         .buyer-name {
             width: 100%;
-            padding: 8px;
-            margin-top: 10px;
+            padding: 6px;
+            margin-top: 8px;
             border: 2px solid #333;
             border-radius: 5px;
-            font-size: 16px;
+            font-size: 14px;
         }
     </style>
     <script>
-        function sendToWhatsApp(productName, price, inputId, nameId) {
+        function sendToWhatsApp(productName, price, inputId, nameId, imageUrl) {
             var quantity = parseInt(document.getElementById(inputId).value);
             var buyerName = document.getElementById(nameId).value.trim();
             if (!buyerName) {
@@ -120,7 +122,7 @@
                 return;
             }
             var whatsappNumber = "62089678428381";
-            var message = `Halo, saya ${buyerName} ingin membeli ${quantity}x ${productName} dengan harga ${price}.`;
+            var message = `Halo, saya ${buyerName} ingin membeli ${quantity}x ${productName} dengan harga ${price}.%0A${imageUrl}`;
             var whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappURL, '_blank');
         }
@@ -139,14 +141,15 @@
     <section class="products">
         <script>
             for (let i = 1; i <= 5; i++) {
+                let imageUrl = `https://naufalmuyassar.github.io/img/prodak/prodak${i}.jpg`;
                 document.write(`
                     <div class="product">
-                        <img src="https://naufalmuyassar.github.io/img/prodak/prodak${i}.jpg" alt="Produk ${i}">
+                        <img src="${imageUrl}" alt="Produk ${i}">
                         <h3>Produk ${i}</h3>
                         <p><strong>Rp ${i * 100000}</strong></p>
                         <input type="text" id="name${i}" class="buyer-name" placeholder="Nama Anda">
                         <input type="number" id="qty${i}" class="quantity" min="1" value="1">
-                        <a href="#" class="buy-button" onclick="sendToWhatsApp('Produk ${i}', 'Rp ${i * 100000}', 'qty${i}', 'name${i}')">Beli Sekarang</a>
+                        <a href="#" class="buy-button" onclick="sendToWhatsApp('Produk ${i}', 'Rp ${i * 100000}', 'qty${i}', 'name${i}', '${imageUrl}')">Beli Sekarang</a>
                     </div>
                 `);
             }
