@@ -89,7 +89,7 @@
             var quantity = parseInt(document.getElementById(inputId).value);
             var buyerName = document.getElementById(nameId).value.trim();
             if (!buyerName) {
-                alert("Masukkan nama Anda");
+                alert("Nama harus dimasukkan! Silakan isi nama Anda sebelum melanjutkan.");
                 return;
             }
             if (isNaN(quantity) || quantity < 1) {
