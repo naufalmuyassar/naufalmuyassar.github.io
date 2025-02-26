@@ -3,154 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Store</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Welcome Page</title>
+    <link rel="icon" type="image/x-icon" href="https://naufalmuyassar.github.io/img/Logo-KK.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/4.1.17/framer-motion.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/resize-observer-polyfill@1.5.1/dist/ResizeObserver.min.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-        }
-        header {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            background: #333;
-            color: #fff;
-            padding: 15px 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #1a202c;
+            color: white;
+            overflow: hidden;
+        }
+        .fade-out {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .typing {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #ff8a00, #e52e71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 1.5s infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 10px rgba(255, 138, 0, 0.7); }
+            to { text-shadow: 0 0 20px rgba(229, 46, 113, 0.7); }
+        }
+        .slider {
+            display: flex;
+            overflow: hidden;
+            width: 100%;
+            max-width: 400px;
+            height: 250px;
             position: relative;
+            margin: 20px auto;
+            border-radius: 12px;
         }
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
-        .logo-container img {
-            width: 50px;
-            height: auto;
-            margin-right: 10px;
-            cursor: pointer;
-        }
-        .logo {
-            font-size: 26px;
-            font-weight: bold;
-        }
-        .menu-button {
-            display: none;
-            font-size: 24px;
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-        }
-        @media (max-width: 768px) {
-            .menu-button {
-                display: block;
-            }
-        }
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 20px;
-            max-width: 1200px;
-            margin: auto;
-        }
-        .product {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            text-align: center;
-        }
-        .product:hover {
-            transform: scale(1.05);
-        }
-        .product img {
+        .slide {
             width: 100%;
-            height: auto;
-            border-radius: 5px;
+            height: 100%;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            border-radius: 12px;
         }
-        .buy-button {
-            display: block;
-            margin-top: 10px;
-            background: #28a745;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .buy-button:hover {
-            background: #218838;
-        }
-        .quantity {
-            width: 70px;
-            text-align: center;
-            margin-top: 10px;
-            padding: 8px;
-            border: 2px solid #28a745;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: bold;
-            color: #333;
-        }
-        .buyer-name {
+        .slide img {
             width: 100%;
-            padding: 8px;
-            margin-top: 10px;
-            border: 2px solid #333;
-            border-radius: 5px;
-            font-size: 16px;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+        .active {
+            opacity: 1;
         }
     </style>
-    <script>
-        function sendToWhatsApp(productName, price, inputId, nameId) {
-            var quantity = parseInt(document.getElementById(inputId).value);
-            var buyerName = document.getElementById(nameId).value.trim();
-            if (!buyerName) {
-                alert("Silakan masukkan nama Anda.");
-                return;
-            }
-            if (isNaN(quantity) || quantity < 1) {
-                alert("Masukkan jumlah produk yang valid.");
-                return;
-            }
-            var whatsappNumber = "62089678428381";
-            var message = `Halo, saya ${buyerName} ingin membeli ${quantity}x ${productName} dengan harga ${price}.`;
-            var whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-            window.open(whatsappURL, '_blank');
-        }
-    </script>
 </head>
 <body>
-    <header>
-        <div class="logo-container">
-            <a href="https://naufalmuyassar.github.io/">
-                <img src="https://naufalmuyassar.github.io/img/Logo%20KK.png" alt="Logo">
-            </a>
-            <span class="logo">Online Store</span>
+    <div id="logo-container" class="flex flex-col justify-center items-center h-screen">
+        <img src="https://naufalmuyassar.github.io/img/Logo%20KK.png" alt="Logo KK" class="w-48 h-48 animate-bounce">
+        <p id="typing-text" class="typing mt-4"></p>
+    </div>
+    
+    <div id="content" class="hidden text-center p-6">
+        <header class="mb-6">
+            <div class="flex flex-col items-center">
+                <img src="https://naufalmuyassar.github.io/img/Logo%20KK.png" alt="Logo KK" class="w-24 h-24">
+                <nav class="mt-4 space-x-4">
+                    <a href="https://naufalmuyassar.github.io/menu/about/index.html" class="text-white font-bold hover:underline">About</a>
+                    <a href="https://naufalmuyassar.github.io/menu/products/index.html" class="text-white font-bold hover:underline">Products</a>
+                    <a href="https://naufalmuyassar.github.io/menu/contact/index.html" class="text-white font-bold hover:underline">Contact</a>
+                </nav>
+            </div>
+        </header>
+        
+        <h2 class="text-2xl font-bold">Welcome to Our Website</h2>
+        <p class="text-gray-300 mt-2">Explore our amazing content!</p>
+        
+        <div class="slider">
+            <div class="slide active"><img src="https://picsum.photos/400/250?1"></div>
+            <div class="slide"><img src="https://picsum.photos/400/250?2"></div>
+            <div class="slide"><img src="https://picsum.photos/400/250?3"></div>
         </div>
-        <button class="menu-button">☰</button>
-    </header>
-    <section class="products">
-        <script>
-            for (let i = 1; i <= 5; i++) {
-                document.write(`
-                    <div class="product">
-                        <img src="https://naufalmuyassar.github.io/img/prodak/prodak${i}.jpg" alt="Produk ${i}">
-                        <h3>Produk ${i}</h3>
-                        <p><strong>Rp ${i * 100000}</strong></p>
-                        <input type="text" id="name${i}" class="buyer-name" placeholder="Nama Anda">
-                        <input type="number" id="qty${i}" class="quantity" min="1" value="1">
-                        <a href="#" class="buy-button" onclick="sendToWhatsApp('Produk ${i}', 'Rp ${i * 100000}', 'qty${i}', 'name${i}')">Beli Sekarang</a>
-                    </div>
-                `);
+    </div>
+    
+    <script>
+        const text = "Sablon Bersama Kami";
+        let index = 0;
+        function typeWriter() {
+            if (index < text.length) {
+                document.getElementById("typing-text").innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 100);
             }
-        </script>
-    </section>
+        }
+        
+        setTimeout(() => {
+            typeWriter();
+        }, 500);
+        
+        setTimeout(() => {
+            document.getElementById("logo-container").classList.add("fade-out");
+            setTimeout(() => {
+                document.getElementById("logo-container").style.display = "none";
+                document.getElementById("content").classList.remove("hidden");
+            }, 1000);
+        }, 3000);
+        
+        let slides = document.querySelectorAll(".slide");
+        let currentSlide = 0;
+        
+        function changeSlide() {
+            slides[currentSlide].classList.remove("active");
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add("active");
+        }
+        setInterval(changeSlide, 3000);
+    </script>
 </body>
 </html>
