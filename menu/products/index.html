@@ -58,13 +58,6 @@
         .product h3, .product p {
             margin: 10px 0;
         }
-        .product input {
-            width: calc(100% - 20px);
-            padding: 8px;
-            margin-top: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
         .product .button {
             display: inline-block;
             width: 100%;
@@ -78,54 +71,69 @@
             text-align: center;
             text-decoration: none;
         }
-        .notification {
-            color: red;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-        #imagePopup {
+        .modal {
             display: none;
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
             justify-content: center;
             align-items: center;
         }
-        #imagePopup img {
-            max-width: 90%;
-            max-height: 80%;
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+            position: relative;
+        }
+        .modal input, .modal select {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .modal .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .modal button {
+            width: 48%;
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .modal .close-button {
+            background-color: red;
         }
     </style>
     <script>
-        function sendToWhatsApp(productName, price, inputId, nameId, imageUrl) {
-            var quantity = parseInt(document.getElementById(inputId).value);
-            var buyerName = document.getElementById(nameId).value.trim();
-            var notification = document.getElementById(nameId + "-notification");
-            
-            if (!buyerName) {
-                notification.innerText = "Nama harus dimasukkan!";
-                return;
-            } else {
-                notification.innerText = "";
-            }
-            
-            if (isNaN(quantity) || quantity < 1) {
-                alert("Jumlah produk tidak valid");
-                return;
-            }
-            
-            var whatsappNumber = "62089678428381";
-            var message = `Halo, saya ${buyerName} ingin membeli ${quantity}x ${productName} dengan harga ${price}. Ini produknya: ${imageUrl}`;
-            var whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-            window.open(whatsappURL, '_blank');
+        function openForm(productName) {
+            document.getElementById("orderForm").style.display = "flex";
+            document.getElementById("category").value = productName;
         }
-        function showImagePopup(imageUrl) {
-            document.getElementById("popupImage").src = imageUrl;
-            document.getElementById("imagePopup").style.display = "flex";
+        function closeForm() {
+            document.getElementById("orderForm").style.display = "none";
         }
-        function closeImagePopup() {
-            document.getElementById("imagePopup").style.display = "none";
+        function sendToWhatsApp() {
+            var name = document.getElementById("name").value;
+            var category = document.getElementById("category").value;
+            var quantity = document.getElementById("quantity").value;
+            var address = document.getElementById("address").value;
+            
+            var message = `Halo, saya ingin memesan produk anda:\nNama: ${name}\nProduk: ${category}\nJumlah: ${quantity}\nAlamat: ${address}`;
+            var phoneNumber = "62089678428381";
+            var url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            
+            window.location.href = url;
         }
     </script>
 </head>
@@ -138,26 +146,46 @@
             <span class="logo">Online Store</span>
         </div>
     </header>
-    <section class="products">
-        <script>
-            for (let i = 1; i <= 5; i++) {
-                let imageUrl = `https://naufalmuyassar.github.io/img/prodak/prodak${i}.jpg`;
-                document.write(`
-                    <div class="product">
-                        <img src="${imageUrl}" alt="Produk ${i}" onclick="showImagePopup('${imageUrl}')">
-                        <h3>Produk ${i}</h3>
-                        <p><strong>Rp ${i * 100000}</strong></p>
-                        <input type="text" id="name${i}" class="buyer-name" placeholder="Nama Anda">
-                        <div id="name${i}-notification" class="notification"></div>
-                        <input type="number" id="qty${i}" class="quantity" min="1" value="1">
-                        <a href="#" class="button" onclick="sendToWhatsApp('Produk ${i}', 'Rp ${i * 100000}', 'qty${i}', 'name${i}', '${imageUrl}')">Beli Sekarang</a>
-                    </div>
-                `);
-            }
-        </script>
-    </section>
-    <div id="imagePopup" onclick="closeImagePopup()">
-        <img id="popupImage" src="" alt="Product Image">
+    <main>
+        <div class="products">
+            <div class="product">
+                <img src="https://naufalmuyassar.github.io/img/prodak/prodak1.jpg" alt="PRODUK01">
+                <h3>PRODUK01</h3>
+                <p><strong>Rp 100000</strong></p>
+                <button class="button" onclick="openForm('PRODUK01')">Beli Sekarang</button>
+            </div>
+            <div class="product">
+                <img src="https://naufalmuyassar.github.io/img/prodak/prodak2.jpg" alt="PRODUK02">
+                <h3>PRODUK02</h3>
+                <p><strong>Rp 200000</strong></p>
+                <button class="button" onclick="openForm('PRODUK02')">Beli Sekarang</button>
+            </div>
+            <div class="product">
+                <img src="https://naufalmuyassar.github.io/img/prodak/prodak3.jpg" alt="PRODUK03">
+                <h3>PRODUK03</h3>
+                <p><strong>Rp 300000</strong></p>
+                <button class="button" onclick="openForm('PRODUK03')">Beli Sekarang</button>
+            </div>
+            <div class="product">
+                <img src="https://naufalmuyassar.github.io/img/prodak/prodak4.jpg" alt="PRODUK04">
+                <h3>PRODUK04</h3>
+                <p><strong>Rp 400000</strong></p>
+                <button class="button" onclick="openForm('PRODUK04')">Beli Sekarang</button>
+            </div>
+        </div>
+    </main>
+    <div id="orderForm" class="modal">
+        <div class="modal-content">
+            <h2>Form Pemesanan</h2>
+            <input type="text" id="name" placeholder="Nama Pemesan">
+            <input type="text" id="category" readonly>
+            <input type="number" id="quantity" placeholder="Jumlah Pesanan" min="1">
+            <input type="text" id="address" placeholder="Alamat Pemesan">
+            <div class="button-container">
+                <button onclick="closeForm()">Close</button>
+                <button onclick="sendToWhatsApp()">Kirim Pesanan</button>
+            </div>
+        </div>
     </div>
 </body>
 </html>
