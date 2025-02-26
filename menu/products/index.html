@@ -18,7 +18,7 @@
             align-items: center;
             background: #333;
             color: #fff;
-            padding: 10px 15px;
+            padding: 15px 20px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             position: relative;
         }
@@ -88,11 +88,12 @@
             background: #28a745;
             color: white;
             text-align: center;
-            padding: 8px;
+            padding: 10px;
             border-radius: 5px;
             text-decoration: none;
             font-weight: bold;
             width: 100%;
+            font-size: 16px;
         }
     </style>
     <script>
@@ -117,7 +118,7 @@
                 return;
             }
             var whatsappNumber = "62089678428381";
-            var message = `Halo, saya ${buyerName} ingin membeli ${quantity}x ${productName} dengan harga ${price}. Ini contoh produknya: ${imageUrl}`;
+            var message = `Halo, saya ${buyerName} ingin membeli ${quantity}x ${productName} dengan harga ${price}. Ini produknya: ${imageUrl}`;
             var whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappURL, '_blank');
         }
@@ -145,9 +146,9 @@
                         <img src="${imageUrl}" alt="Produk ${i}">
                         <h3>Produk ${i}</h3>
                         <p><strong>Rp ${i * 100000}</strong></p>
-                        <input type="text" id="name${i}" class="buyer-name" placeholder="Nama Anda">
+                        <input type="text" id="name${i}" class="buyer-name" placeholder="Nama">
                         <input type="number" id="qty${i}" class="quantity" min="1" value="1">
-                        <a href="#" class="buy-button" onclick="sendToWhatsApp('Produk ${i}', 'Rp ${i * 100000}', 'qty${i}', 'name${i}', '${imageUrl}')">Beli</a>
+                        <a href="#" class="buy-button" onclick="sendToWhatsApp('Produk ${i}', 'Rp ${i * 100000}', 'qty${i}', 'name${i}', '${imageUrl}')">Beli Sekarang</a>
                     </div>
                 `);
             }
