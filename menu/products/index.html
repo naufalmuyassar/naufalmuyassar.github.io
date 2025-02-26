@@ -4,10 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Store</title>
-   <meta property="og:title" content="Undangan Pernikahan Sofia & Handy - Jum'at, 3 Februari 2023">
-    <meta property="og:description" content="Undangan Pernikahan Sofia & Handy - Jum'at, 3 Februari 2023 di Masjid Nurul Hidayah, Kotawaringin Timur">
-    <meta property="og:locale" content="id_ID" />
-    <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -100,7 +96,6 @@
                 alert("Jumlah produk tidak valid");
                 return;
             }
-            document.getElementById("ogImage").setAttribute("content", imageUrl);
             var whatsappNumber = "62089678428381";
             var message = `Halo, saya ${buyerName} ingin membeli ${quantity}x ${productName} dengan harga ${price}. Ini produknya: ${imageUrl}`;
             var whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
