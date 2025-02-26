@@ -1,35 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>KK SABLON</title>
-  <link rel="icon" type="image/x-icon" href="https://naufalmuyassar.github.io/img/logo/Logo%20KK.png">
-  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato&amp;display=swap'><link rel="stylesheet" href="./style.css">
-
- <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/4.1.17/framer-motion.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/resize-observer-polyfill@1.5.1/dist/ResizeObserver.min.js"></script>
     <style>
-        body { display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #1a202c; }
-        .content { background: white; padding: 20px; border-radius: 12px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); width: 300px; text-align: center; display: none; }
-        .logo-container { display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .fade-out {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
     </style>
 </head>
-  
-<body>
-    <div class="logo-container" id="logo-container">
+<body class="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
+    <div id="logo-container" class="flex justify-center items-center h-screen">
         <img src="https://naufalmuyassar.github.io/img/Logo%20KK.png" alt="Logo KK" class="w-48 h-48 animate-bounce">
     </div>
     
-    <div class="content" id="content">
-        <header class="Header">
-            <div class="Header-inner">
-                <div class="logo">
-                    <img src="https://naufalmuyassar.github.io/img/Logo%20KK.png" alt="Logo KK">
-                </div>
-                <nav class="Header-nav">
-                    <a href="https://naufalmuyassar.github.io/menu/about/index.html">About</a>
-                    <a href="https://naufalmuyassar.github.io/menu/products/index.html">Products</a>
-                    <a href="https://naufalmuyassar.github.io/menu/contact/index.html">Contact</a>
+    <div id="content" class="hidden text-center p-6">
+        <header class="mb-6">
+            <div class="flex flex-col items-center">
+                <img src="https://naufalmuyassar.github.io/img/Logo%20KK.png" alt="Logo KK" class="w-24 h-24">
+                <nav class="mt-4 space-x-4">
+                    <a href="https://naufalmuyassar.github.io/menu/about/index.html" class="text-white font-bold hover:underline">About</a>
+                    <a href="https://naufalmuyassar.github.io/menu/products/index.html" class="text-white font-bold hover:underline">Products</a>
+                    <a href="https://naufalmuyassar.github.io/menu/contact/index.html" class="text-white font-bold hover:underline">Contact</a>
                 </nav>
             </div>
         </header>
@@ -37,17 +34,20 @@
         <h2 class="text-2xl font-bold">Welcome to Our Website</h2>
         <p class="text-gray-300 mt-2">Explore our amazing content!</p>
         
-        <div class="container">
-            <div class="card" style="background-image: url(https://picsum.photos/1920/1080?1);"></div>
-            <div class="card" style="background-image: url(https://picsum.photos/1920/1080?2);"></div>
-            <div class="card" style="background-image: url(https://picsum.photos/1920/1080?3);"></div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+            <div class="w-72 h-44 bg-cover rounded-lg shadow-lg" style="background-image: url(https://picsum.photos/400/300?1);"></div>
+            <div class="w-72 h-44 bg-cover rounded-lg shadow-lg" style="background-image: url(https://picsum.photos/400/300?2);"></div>
+            <div class="w-72 h-44 bg-cover rounded-lg shadow-lg" style="background-image: url(https://picsum.photos/400/300?3);"></div>
         </div>
     </div>
     
     <script>
         setTimeout(() => {
-            document.getElementById("logo-container").style.display = "none";
-            document.getElementById("content").style.display = "block";
+            document.getElementById("logo-container").classList.add("fade-out");
+            setTimeout(() => {
+                document.getElementById("logo-container").style.display = "none";
+                document.getElementById("content").classList.remove("hidden");
+            }, 1000);
         }, 3000);
     </script>
 </body>
