@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Store</title>
+    <title>Online Store</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f8f9fa;
         }
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #222;
+            background: #333;
             color: #fff;
             padding: 15px 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         .logo {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: bold;
         }
         nav ul {
@@ -33,36 +34,56 @@
         nav a {
             color: white;
             text-decoration: none;
+            font-weight: bold;
         }
         .cart {
             font-size: 18px;
-        }
-        .menu {
-            display: none;
+            cursor: pointer;
         }
         .products {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             padding: 20px;
+            max-width: 1200px;
+            margin: auto;
         }
         .product {
             background: white;
             padding: 15px;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .product:hover {
+            transform: scale(1.05);
         }
         .image-placeholder {
             width: 100%;
-            height: 150px;
-            background: #ddd;
+            height: 200px;
+            background: #e0e0e0;
             margin-bottom: 10px;
+            border-radius: 5px;
         }
         del {
             color: gray;
         }
         strong {
-            color: red;
+            color: #d32f2f;
+        }
+        .buy-button {
+            display: block;
+            margin-top: 10px;
+            background: #28a745;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .buy-button:hover {
+            background: #218838;
         }
         @media (max-width: 600px) {
             header {
@@ -79,35 +100,40 @@
 </head>
 <body>
     <header>
-        <div class="logo">store</div>
+        <div class="logo">Online Store</div>
         <nav>
             <ul>
-                <li><a href="#">MEN'S</a></li>
-                <li><a href="#">WOMEN'S</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
         </nav>
-        <div class="cart">(0)</div>
+        <div class="cart">🛒 (0)</div>
     </header>
     <section class="products">
         <div class="product">
             <div class="image-placeholder"></div>
             <p>Bodycon poplin shirt - Armani Exchange</p>
             <strong>&pound;25.50</strong>
+            <a href="#" class="buy-button">Buy Now</a>
         </div>
         <div class="product">
             <div class="image-placeholder"></div>
             <p>Mid-length check mullet dress - Barneys Originals</p>
             <del>&pound;20.00</del> <strong>&pound;16.00 (-20%)</strong>
+            <a href="#" class="buy-button">Buy Now</a>
         </div>
         <div class="product">
             <div class="image-placeholder"></div>
             <p>High waisted skinny jeans with fading - Abercrombie and Fitch</p>
             <del>&pound;50.50</del> <strong>&pound;45.45 (-10%)</strong>
+            <a href="#" class="buy-button">Buy Now</a>
         </div>
         <div class="product">
             <div class="image-placeholder"></div>
             <p>High-waisted slim jeans with rips - Bolongaro Trevor</p>
             <strong>&pound;15.50</strong>
+            <a href="#" class="buy-button">Buy Now</a>
         </div>
     </section>
 </body>
