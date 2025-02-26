@@ -32,61 +32,22 @@
             align-items: center;
         }
         .logo-container img {
-            width: 80px;
+            width: 60px;
             height: auto;
             margin-right: 10px;
         }
-        .popup-overlay, .image-popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            display: none;
-            justify-content: center;
-            align-items: center;
-        }
-        .popup, .image-popup {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            text-align: center;
-        }
-        .image-popup img {
-            max-width: 90%;
-            max-height: 80vh;
-            border-radius: 8px;
-        }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            background: #28a745;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-            font-size: 16px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .button:hover {
-            background: #218838;
-        }
         .products {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            padding: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            padding: 20px;
             max-width: 1000px;
             margin: auto;
             margin-top: 90px;
         }
         .product {
             background: white;
-            padding: 10px;
+            padding: 15px;
             border-radius: 8px;
             box-shadow: 0 3px 6px rgba(0,0,0,0.1);
             text-align: center;
@@ -94,48 +55,32 @@
         .product img {
             width: 100%;
             height: auto;
-            max-height: 160px;
+            max-height: 140px;
             object-fit: cover;
             border-radius: 5px;
             cursor: pointer;
         }
+        .product h3 {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        .product p {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+        .product input {
+            width: 90%;
+            padding: 8px;
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .product .button {
+            display: inline-block;
+            width: 100%;
+            margin-top: 10px;
+        }
     </style>
-    <script>
-        function showPopup(message) {
-            let popupOverlay = document.getElementById("popup-overlay");
-            let popup = document.getElementById("popup");
-            popup.innerHTML = `<p>${message}</p><button class='button' onclick="closePopup()">OK</button>`;
-            popupOverlay.style.display = "flex";
-        }
-        function closePopup() {
-            document.getElementById("popup-overlay").style.display = "none";
-        }
-        function sendToWhatsApp(productName, price, inputId, nameId, imageUrl) {
-            var quantity = parseInt(document.getElementById(inputId).value);
-            var buyerName = document.getElementById(nameId).value.trim();
-            if (!buyerName) {
-                showPopup("Masukkan nama Anda");
-                return;
-            }
-            if (isNaN(quantity) || quantity < 1) {
-                showPopup("Jumlah produk tidak valid");
-                return;
-            }
-            var whatsappNumber = "62089678428381";
-            var message = `Halo, saya ${buyerName} ingin membeli ${quantity}x ${productName} dengan harga ${price}. Ini produknya: ${imageUrl}`;
-            var whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-            window.open(whatsappURL, '_blank');
-        }
-        function showImagePopup(imageUrl) {
-            let imagePopupOverlay = document.getElementById("image-popup-overlay");
-            let imagePopup = document.getElementById("image-popup");
-            imagePopup.innerHTML = `<img src="${imageUrl}" alt="Produk"> <br><button class='button' onclick="closeImagePopup()">Tutup</button>`;
-            imagePopupOverlay.style.display = "flex";
-        }
-        function closeImagePopup() {
-            document.getElementById("image-popup-overlay").style.display = "none";
-        }
-    </script>
 </head>
 <body>
     <header>
@@ -146,12 +91,6 @@
             <span class="logo">Online Store</span>
         </div>
     </header>
-    <div id="popup-overlay" class="popup-overlay">
-        <div id="popup" class="popup"></div>
-    </div>
-    <div id="image-popup-overlay" class="image-popup-overlay" onclick="closeImagePopup()">
-        <div id="image-popup" class="image-popup"></div>
-    </div>
     <section class="products">
         <script>
             for (let i = 1; i <= 5; i++) {
