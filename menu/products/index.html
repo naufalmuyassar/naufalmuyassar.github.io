@@ -20,10 +20,16 @@
             color: #fff;
             padding: 15px 20px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
         }
         .logo {
             font-size: 26px;
             font-weight: bold;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 26px;
+            cursor: pointer;
         }
         nav ul {
             list-style: none;
@@ -87,7 +93,19 @@
         }
         @media (max-width: 600px) {
             header {
-                flex-direction: column;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            nav {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: #333;
                 text-align: center;
             }
             nav ul {
@@ -95,12 +113,16 @@
                 gap: 10px;
                 padding: 10px 0;
             }
+            nav.active {
+                display: block;
+            }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="logo">Online Store</div>
+        <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
@@ -136,5 +158,11 @@
             <a href="#" class="buy-button">Buy Now</a>
         </div>
     </section>
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
