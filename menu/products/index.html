@@ -131,6 +131,20 @@
         .order-form button:hover {
             background: #218838;
         }
+        .close-button {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border-radius: 5px;
+        }
+        .close-button:hover {
+            background: #c82333;
+        }
         .overlay {
             display: none;
             position: fixed;
@@ -162,20 +176,12 @@
     </section>
     <div class="overlay" id="overlay" onclick="hideOrderForm()"></div>
     <div class="order-form" id="orderForm">
+        <button class="close-button" onclick="hideOrderForm()">X</button>
         <h3>Formulir Pesanan</h3>
         <input type="text" id="name" placeholder="Nama" required>
         <input type="text" id="address" placeholder="Alamat" required>
         <textarea id="order" placeholder="Pesanan" required></textarea>
         <button onclick="sendOrder()">Kirim Pesanan</button>
     </div>
-    <script>
-        function sendOrder() {
-            let name = document.getElementById('name').value;
-            let address = document.getElementById('address').value;
-            let order = document.getElementById('order').value;
-            let whatsappURL = `https://wa.me/+628967848381?text=Nama:%20${name}%0AAlamat:%20${address}%0APesanan:%20${order}`;
-            window.open(whatsappURL, '_blank');
-        }
-    </script>
 </body>
 </html>
