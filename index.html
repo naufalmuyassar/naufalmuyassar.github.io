@@ -12,12 +12,20 @@
             opacity: 0;
             transition: opacity 1s ease-in-out;
         }
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
     <div id="logo-container" class="flex flex-col justify-center items-center h-screen">
         <img src="https://naufalmuyassar.github.io/img/Logo%20KK.png" alt="Logo KK" class="w-48 h-48 animate-bounce">
-        <p class="text-xl font-semibold mt-4">Sablon Bersama Kami</p>
+        <p class="text-xl font-semibold mt-4 fade-in">Sablon Bersama Kami</p>
     </div>
     
     <div id="content" class="hidden text-center p-6">
