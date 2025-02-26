@@ -2,75 +2,89 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-   <link rel="icon" type="image/x-icon" href="https://naufalmuyassar.github.io/img/logo/Logo%20KK.png">
-  <title>KK SABLON</title>
-  <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel="stylesheet" type="text/css" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-    <style>
-        h1 { font-family: 'Pacifico', sans-serif; }
-    </style>
+  <title>Header Nav Overflow Into Mobile Nav</title>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato&amp;display=swap'><link rel="stylesheet" href="./style.css">
+
 </head>
 <body>
-<br>
-  <br>
-  
-<section class="relative pb-20">
-    <div class="container">
-<div class="img">
-        <img src="https://naufalmuyassar.github.io/img/logo/Logo%20KK.png" width="200" height="220">
-         </div>
-      </div>
-  
-<!-- Section Start -->
-  <section class="section pt-28 pb-20" id="home">
-    <div class="mx-10">
-        <div class="lg:flex justify-center">
-        <div class="text-center">
-          <div class="text-center">
-            <h1 class="text-4xl font-semibold leading-[50px] tracking-wide text-transparent bg-clip-text bg-gradient-to-l from-pink-400 to-blue-600 mb-10">
-              KK SABLON
-            </h1>
-          </div>
+<!-- partial:index.partial.html -->
+<div class="MobileNav" data-mobile-nav>
+  <div class="MobileNav-overlay" data-mobile-nav-overlay></div>
+  <div class="MobileNav-inner">
+    <div class="MobileNav-trigger" data-mobile-nav-trigger>
+      <div class="MobileNav-trigger-inner"></div>
+    </div>
+    <ul class="MobileNav-nav" data-mobile-nav-list>
+      <li class="MobileNav-item" data-mobile-nav-item="1">
+        <div class="MobileNav-item-title">
+          <a href="#">About</a>
         </div>
+      </li>
+      <li class="MobileNav-item" data-mobile-nav-item="2">
+        <div class="MobileNav-item-title">
+          <a href="#">Products</a>
+        </div>
+      </li>
+      <li class="MobileNav-item" data-mobile-nav-item="3">
+        <div class="MobileNav-item-title">
+          <a href="#">Services</a>
+        </div>
+      </li>
+      <li class="MobileNav-item" data-mobile-nav-item="4">
+        <div class="MobileNav-item-title">
+          <a href="#">Work</a>
+        </div>
+      </li>
+      <li class="MobileNav-item" data-mobile-nav-item="5">
+        <div class="MobileNav-item-title">
+          <a href="#">Contact</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<header class="Header" data-header>
+  <div class="Header-inner" data-header-nav>
+    <div class="logo">
+      <img src="https://i.imgur.com/F0k8l7N.png" alt="">
+    </div>
+    <nav class="Header-nav" data-nav>
+      <div class="Header-nav-item" data-nav-item="1">
+        <a href="#">About</a>
       </div>
-    </div>
-  </section>
-  <!-- Section End -->
-<section class="relative pb-20">
-    <div class="container">
-      <div class="grid md:grid-cols-1 sm:grid-cols-1 grid-cols-1 gap-6">
-  <div class="flex items-center justify-center">
-          <a href="doc_X/doc-001/index.html" class="relative inline-flex items-center px-12 py-4 overflow-hidden text-lg font-medium text-indigo-600 border-2 border-indigo-600 rounded-full hover:text-white group hover:bg-gray-50">
-            <span class="absolute left-0 block w-full h-0 transition-all bg-indigo-600 opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
-            <span class="absolute right-0 flex items-center justify-start w-10 h-10 duration-300 transform translate-x-full group-hover:translate-x-0 ease">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-              </svg>
-            </span>
-            <span class="relative">KAOS SABLON</span>
-          </a>
+      <div class="Header-nav-item" data-nav-item="2">
+        <a href="#">Products</a>
+      </div>
+      <div class="Header-nav-item" data-nav-item="3">
+        <a href="#">Services</a>
+      </div>
+      <div class="Header-nav-item" data-nav-item="4">
+        <a href="#">Work</a>
+      </div>
+      <div class="Header-nav-item" data-nav-item="5">
+        <a href="#">Contact</a>
+      </div>
+    </nav>
+    <button class="MobileNav-trigger" data-mobile-nav-trigger>
+      <div class="MobileNav-trigger-inner"></div>
+    </button>
   </div>
-         <div class="flex items-center justify-center">
-          <a href="#_" class="relative inline-flex items-center px-12 py-4 overflow-hidden text-lg font-medium text-indigo-600 border-2 border-indigo-600 rounded-full hover:text-white group hover:bg-gray-50">
-            <span class="absolute left-0 block w-full h-0 transition-all bg-indigo-600 opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
-            <span class="absolute right-0 flex items-center justify-start w-10 h-10 duration-300 transform translate-x-full group-hover:translate-x-0 ease">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-              </svg>
-            </span>
-            <span class="relative">PRODAK DIGITAL</span>
-          </a>
-  </div>
-  </div>
-    </div>
-  </section>
-<h1>https://maps.app.goo.gl/FU4LE1Jw59rdMhsD9</h1>
+</header>
 
+<div class="container">
+  <div class="card" style="background-image: url(https://picsum.photos/1920/1080?1);"></div>
+  <div class="card" style="background-image: url(https://picsum.photos/1920/1080?2);"></div>
+  <div class="card" style="background-image: url(https://picsum.photos/1920/1080?3);"></div>
+  <div class="card" style="background-image: url(https://picsum.photos/1920/1080?4);"></div>
+  <div class="card" style="background-image: url(https://picsum.photos/1920/1080?5);"></div>
+  <div class="card" style="background-image: url(https://picsum.photos/1920/1080?6);"></div>
+  <div class="card" style="background-image: url(https://picsum.photos/1920/1080?7);"></div>
+  <div class="card" style="background-image: url(https://picsum.photos/1920/1080?8);"></div>
+  <div class="card" style="background-image: url(https://picsum.photos/1920/1080?9);"></div>
+</div>
+<!-- partial -->
+  <script src='https://cdn.jsdelivr.net/npm/resize-observer-polyfill@1.5.1/dist/ResizeObserver.min.js'></script><script  src="./script.js"></script>
 
-
-
-  
 </body>
 </html>
