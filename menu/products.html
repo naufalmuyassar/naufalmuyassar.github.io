@@ -39,6 +39,24 @@
             height: 100vh;
             font-size: 24px;
             font-weight: bold;
+            position: absolute;
+            width: 100%;
+            background: white;
+            z-index: 999;
+        }
+        .loading::after {
+            content: "";
+            width: 40px;
+            height: 40px;
+            border: 5px solid #333;
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         .products {
             display: grid;
@@ -91,12 +109,11 @@
             align-items: center;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            padding: 20px;
+            position: relative;
         }
         .modal-content {
-            padding: 20px;
-            border-radius: 8px;
             text-align: center;
-            position: relative;
         }
         .modal-content img {
             width: 100%;
@@ -106,12 +123,20 @@
         }
         .close-button {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 20px;
+            top: -20px;
+            right: -20px;
+            font-size: 24px;
             font-weight: bold;
             cursor: pointer;
             color: red;
+            background: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
     </style>
     <script>
@@ -155,22 +180,24 @@
             document.getElementById('loading').style.display = 'none';
             document.getElementById('products').style.display = 'grid';
         }
-        
-        function showDetails(productName, price, imageSrc, description) {
-            document.getElementById("detailModal").style.display = "flex";
-            document.getElementById("detailTitle").innerText = productName;
-            document.getElementById("detailPrice").innerText = "Rp " + price;
-            document.getElementById("detailImage").src = imageSrc;
-            document.getElementById("detailDescription").innerText = description;
+        function showDetails(name, price, image, desc) {
+            let modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close-button" onclick="this.parentElement.parentElement.remove()">&times;</span>
+                    <img src="${image}" alt="${name}">
+                    <h3>${name}</h3>
+                    <p>${desc}</p>
+                    <p>Harga: ${price}</p>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            modal.style.display = 'block';
         }
-        function closeDetails() {
-            document.getElementById("detailModal").style.display = "none";
-        }
-        
-        window.onload = fetchProducts;
     </script>
 </head>
-<body>
+<body onload="fetchProducts()">
     <header>
         <div class="logo-container">
             <a href="https://naufalmuyassar.github.io/">
@@ -183,14 +210,5 @@
         <div id="loading" class="loading">Loading...</div>
         <div class="products" id="products"></div>
     </main>
-    <div id="detailModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeDetails()">&times;</span>
-            <h2 id="detailTitle"></h2>
-            <img id="detailImage" src="" alt="Product Image">
-            <p id="detailPrice"></p>
-            <p id="detailDescription"></p>
-        </div>
-    </div>
 </body>
 </html>
