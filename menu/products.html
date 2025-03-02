@@ -78,13 +78,13 @@
             left: 50%;
             transform: translate(-50%, -50%);
             width: 300px;
-            background: rgba(0, 0, 0, 0.5);
+            background: white;
             justify-content: center;
             align-items: center;
             border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         .modal-content {
-            background: white;
             padding: 20px;
             border-radius: 8px;
             text-align: center;
@@ -104,6 +104,19 @@
             font-weight: bold;
             cursor: pointer;
             color: red;
+        }
+        .button {
+            display: inline-block;
+            width: 100%;
+            margin-top: 10px;
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
         }
     </style>
     <script>
@@ -134,24 +147,28 @@
                 <h3>PRODUK01</h3>
                 <p><strong>Rp 100000</strong></p>
                 <div class="detail-box" onclick="showDetails('PRODUK01', 100000, 'https://naufalmuyassar.github.io/img/prodak/prodak1.jpg')">?</div>
+                <button class="button">Beli Sekarang</button>
             </div>
             <div class="product">
                 <img src="https://naufalmuyassar.github.io/img/prodak/prodak2.jpg" alt="PRODUK02">
                 <h3>PRODUK02</h3>
                 <p><strong>Rp 200000</strong></p>
                 <div class="detail-box" onclick="showDetails('PRODUK02', 200000, 'https://naufalmuyassar.github.io/img/prodak/prodak2.jpg')">?</div>
+                <button class="button">Beli Sekarang</button>
             </div>
             <div class="product">
                 <img src="https://naufalmuyassar.github.io/img/prodak/prodak3.jpg" alt="PRODUK03">
                 <h3>PRODUK03</h3>
                 <p><strong>Rp 300000</strong></p>
                 <div class="detail-box" onclick="showDetails('PRODUK03', 300000, 'https://naufalmuyassar.github.io/img/prodak/prodak3.jpg')">?</div>
+                <button class="button">Beli Sekarang</button>
             </div>
             <div class="product">
                 <img src="https://naufalmuyassar.github.io/img/prodak/prodak4.jpg" alt="PRODUK04">
                 <h3>PRODUK04</h3>
                 <p><strong>Rp 400000</strong></p>
                 <div class="detail-box" onclick="showDetails('PRODUK04', 400000, 'https://naufalmuyassar.github.io/img/prodak/prodak4.jpg')">?</div>
+                <button class="button">Beli Sekarang</button>
             </div>
         </div>
     </main>
