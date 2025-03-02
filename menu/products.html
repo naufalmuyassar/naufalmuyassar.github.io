@@ -107,11 +107,12 @@
         }
     </style>
     <script>
-        function showDetails(productName, price, imageSrc) {
+        function showDetails(productName, price, imageSrc, description) {
             document.getElementById("detailModal").style.display = "flex";
             document.getElementById("detailTitle").innerText = productName;
             document.getElementById("detailPrice").innerText = "Rp " + price;
             document.getElementById("detailImage").src = imageSrc;
+            document.getElementById("detailDescription").innerText = description;
         }
         function closeDetails() {
             document.getElementById("detailModal").style.display = "none";
@@ -132,22 +133,22 @@
             <div class="product">
                 <img src="https://naufalmuyassar.github.io/img/prodak/prodak1.jpg" alt="PRODUK01">
                 <h3>PRODUK01</h3>
-                <div class="detail-box" onclick="showDetails('PRODUK01', 100000, 'https://naufalmuyassar.github.io/img/prodak/prodak1.jpg')">?</div>
+                <div class="detail-box" onclick="showDetails('PRODUK01', 100000, 'https://naufalmuyassar.github.io/img/prodak/prodak1.jpg', 'Deskripsi produk 01')">?</div>
             </div>
             <div class="product">
                 <img src="https://naufalmuyassar.github.io/img/prodak/prodak2.jpg" alt="PRODUK02">
                 <h3>PRODUK02</h3>
-                <div class="detail-box" onclick="showDetails('PRODUK02', 200000, 'https://naufalmuyassar.github.io/img/prodak/prodak2.jpg')">?</div>
+                <div class="detail-box" onclick="showDetails('PRODUK02', 200000, 'https://naufalmuyassar.github.io/img/prodak/prodak2.jpg', 'Deskripsi produk 02')">?</div>
             </div>
             <div class="product">
                 <img src="https://naufalmuyassar.github.io/img/prodak/prodak3.jpg" alt="PRODUK03">
                 <h3>PRODUK03</h3>
-                <div class="detail-box" onclick="showDetails('PRODUK03', 300000, 'https://naufalmuyassar.github.io/img/prodak/prodak3.jpg')">?</div>
+                <div class="detail-box" onclick="showDetails('PRODUK03', 300000, 'https://naufalmuyassar.github.io/img/prodak/prodak3.jpg', 'Deskripsi produk 03')">?</div>
             </div>
             <div class="product">
                 <img src="https://naufalmuyassar.github.io/img/prodak/prodak4.jpg" alt="PRODUK04">
                 <h3>PRODUK04</h3>
-                <div class="detail-box" onclick="showDetails('PRODUK04', 400000, 'https://naufalmuyassar.github.io/img/prodak/prodak4.jpg')">?</div>
+                <div class="detail-box" onclick="showDetails('PRODUK04', 400000, 'https://naufalmuyassar.github.io/img/prodak/prodak4.jpg', 'Deskripsi produk 04')">?</div>
             </div>
         </div>
     </main>
@@ -157,6 +158,7 @@
             <h2 id="detailTitle"></h2>
             <img id="detailImage" src="" alt="Product Image">
             <p id="detailPrice"></p>
+            <p id="detailDescription"></p>
         </div>
     </div>
 </body>
