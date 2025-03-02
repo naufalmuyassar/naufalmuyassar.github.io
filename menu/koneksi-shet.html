@@ -9,21 +9,32 @@
         
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             background-color: #f4f4f4;
             margin: 0;
+            text-align: center;
         }
 
-        h1 {
+        h1, h2 {
             font-family: 'Great Vibes', cursive;
-            font-size: 60px;
             color: #ff6347;
             text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
             opacity: 0;
             transform: translateY(-20px);
             animation: fadeIn 2s ease-out forwards;
+        }
+
+        h1 {
+            font-size: 60px;
+            animation-delay: 0s;
+        }
+
+        h2 {
+            font-size: 40px;
+            animation-delay: 1s;
         }
 
         @keyframes fadeIn {
@@ -36,5 +47,6 @@
 </head>
 <body>
     <h1 id="welcome">Selamat Datang</h1>
+    <h2 id="selected">Kamu yang Terpilih</h2>
 </body>
 </html>
