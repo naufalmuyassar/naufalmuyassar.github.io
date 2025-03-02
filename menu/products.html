@@ -103,13 +103,17 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 400px;
+            width: 300px;
             background: white;
+            justify-content: center;
+            align-items: center;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             padding: 20px;
+        }
+        .modal-content {
             text-align: center;
+            position: relative;
         }
         .modal-content img {
             width: 100%;
@@ -119,39 +123,15 @@
         }
         .close-button {
             position: absolute;
-            top: -20px;
-            right: -20px;
-            font-size: 24px;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
             font-weight: bold;
             cursor: pointer;
             color: red;
-            background: white;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
     </style>
     <script>
-        function showDetails(label, price, image, description) {
-            const modal = document.createElement('div');
-            modal.classList.add('modal');
-            modal.innerHTML = `
-                <span class="close-button" onclick="this.parentElement.remove()">&times;</span>
-                <div class="modal-content">
-                    <img src="${image}" alt="${label}">
-                    <h3>${label}</h3>
-                    <p>Harga: ${price}</p>
-                    <p>${description}</p>
-                </div>
-            `;
-            document.body.appendChild(modal);
-            modal.style.display = 'flex';
-        }
-
         async function fetchProducts() {
             document.getElementById('loading').style.display = 'flex';
             document.getElementById('products').style.display = 'none';
@@ -192,11 +172,32 @@
             document.getElementById('loading').style.display = 'none';
             document.getElementById('products').style.display = 'grid';
         }
+        
+        function showDetails(label, price, image, description) {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close-button" onclick="this.parentElement.parentElement.remove()">&times;</span>
+                    <img src="${image}" alt="${label}">
+                    <h3>${label}</h3>
+                    <p>${description}</p>
+                    <p><strong>Harga:</strong> ${price}</p>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            modal.style.display = 'flex';
+        }
+        
+        window.onload = fetchProducts;
     </script>
 </head>
-<body onload="fetchProducts()">
+<body>
     <header>
         <div class="logo-container">
+            <a href="https://naufalmuyassar.github.io/">
+                <img src="https://naufalmuyassar.github.io/img/Logo%20KK.png" alt="Logo">
+            </a>
             <span class="logo">Online Store</span>
         </div>
     </header>
