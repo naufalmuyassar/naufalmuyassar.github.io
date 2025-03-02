@@ -103,16 +103,12 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 300px;
+            width: 90%;
+            max-width: 400px;
             background: white;
-            justify-content: center;
-            align-items: center;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             padding: 20px;
-            position: relative;
-        }
-        .modal-content {
             text-align: center;
         }
         .modal-content img {
@@ -140,6 +136,22 @@
         }
     </style>
     <script>
+        function showDetails(label, price, image, description) {
+            const modal = document.createElement('div');
+            modal.classList.add('modal');
+            modal.innerHTML = `
+                <span class="close-button" onclick="this.parentElement.remove()">&times;</span>
+                <div class="modal-content">
+                    <img src="${image}" alt="${label}">
+                    <h3>${label}</h3>
+                    <p>Harga: ${price}</p>
+                    <p>${description}</p>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            modal.style.display = 'flex';
+        }
+
         async function fetchProducts() {
             document.getElementById('loading').style.display = 'flex';
             document.getElementById('products').style.display = 'none';
@@ -180,29 +192,11 @@
             document.getElementById('loading').style.display = 'none';
             document.getElementById('products').style.display = 'grid';
         }
-        function showDetails(name, price, image, desc) {
-            let modal = document.createElement('div');
-            modal.className = 'modal';
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <span class="close-button" onclick="this.parentElement.parentElement.remove()">&times;</span>
-                    <img src="${image}" alt="${name}">
-                    <h3>${name}</h3>
-                    <p>${desc}</p>
-                    <p>Harga: ${price}</p>
-                </div>
-            `;
-            document.body.appendChild(modal);
-            modal.style.display = 'block';
-        }
     </script>
 </head>
 <body onload="fetchProducts()">
     <header>
         <div class="logo-container">
-            <a href="https://naufalmuyassar.github.io/">
-                <img src="https://naufalmuyassar.github.io/img/Logo%20KK.png" alt="Logo">
-            </a>
             <span class="logo">Online Store</span>
         </div>
     </header>
