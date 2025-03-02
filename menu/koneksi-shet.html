@@ -3,68 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selamat Datang</title>
+    <title>Daftar Produk</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-        
         body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            font-family: Arial, sans-serif;
             background-color: #f4f4f4;
-            margin: 0;
             text-align: center;
+            padding: 20px;
         }
-
-        h1, h2 {
-            font-family: 'Great Vibes', cursive;
-            color: #ff6347;
-            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: fadeIn 2s ease-out forwards;
+        .product {
+            display: inline-block;
+            background: white;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 250px;
         }
-
-        h1 {
-            font-size: 60px;
-            animation-delay: 0s;
-        }
-
-        h2 {
-            font-size: 40px;
-            animation-delay: 1s;
-        }
-
         img {
-            width: 150px;
-            margin-top: 20px;
-            opacity: 0;
-            transform: scale(0.8);
-            animation: fadeInScale 2s ease-out forwards;
-            animation-delay: 1.5s;
+            width: 100%;
+            border-radius: 5px;
         }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        h2 {
+            font-size: 20px;
+            color: #333;
         }
-
-        @keyframes fadeInScale {
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+        p {
+            font-size: 16px;
+            color: #666;
+        }
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ff6347;
         }
     </style>
     <script>
-        async function fetchData() {
+        async function fetchProducts() {
             const SPREADSHEET_ID = '11POgyc5n_TGp5hfp-QE3omowY3oeR3OYnzPdf19U9f4';
-            const RANGE = 'Sheet1!A1:C1'; // Ambil data dari kolom A1, B1, dan C1
-            const API_KEY = 'AIzaSyDWs8HDvJjgbx3D2hGQBkK0Nzxftl_J2us'; // Ganti dengan API Key Anda
+            const RANGE = 'Sheet1!B2:E10'; // Ambil data dari B2:E10 (label, harga, deskripsi, gambar)
+            const API_KEY = 'AIzaSyDWs8HDvJjgbx3D2hGQBkK0Nzxftl_J2us';
             
             const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE}?key=${API_KEY}`;
             try {
@@ -72,21 +50,36 @@
                 const data = await response.json();
                 
                 if (data.values && data.values.length > 0) {
-                    document.getElementById('welcome').innerText = data.values[0][0] || 'Selamat Datang';
-                    document.getElementById('selected').innerText = data.values[0][1] || 'Kamu yang Terpilih';
-                    document.getElementById('image').src = data.values[0][2] || 'https://via.placeholder.com/150';
+                    const container = document.getElementById('products');
+                    container.innerHTML = '';
+                    
+                    data.values.forEach(row => {
+                        const productLabel = row[0] || 'Label Produk';
+                        const productPrice = row[1] || 'Harga Tidak Tersedia';
+                        const productDesc = row[2] || 'Deskripsi Tidak Tersedia';
+                        const productImage = row[3] || 'https://via.placeholder.com/250';
+                        
+                        const productHTML = `
+                            <div class="product">
+                                <img src="${productImage}" alt="${productLabel}">
+                                <h2>${productLabel}</h2>
+                                <p class="price">${productPrice}</p>
+                                <p>${productDesc}</p>
+                            </div>
+                        `;
+                        container.innerHTML += productHTML;
+                    });
                 }
             } catch (error) {
                 console.error('Gagal mengambil data:', error);
             }
         }
         
-        window.onload = fetchData;
+        window.onload = fetchProducts;
     </script>
 </head>
 <body>
-    <h1 id="welcome">Memuat...</h1>
-    <h2 id="selected">Memuat...</h2>
-    <img id="image" src="https://via.placeholder.com/150" alt="Gambar Dekoratif">
+    <h1>Daftar Produk</h1>
+    <div id="products">Memuat produk...</div>
 </body>
 </html>
