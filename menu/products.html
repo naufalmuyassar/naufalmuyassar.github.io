@@ -177,9 +177,8 @@
             const modal = document.createElement('div');
             modal.className = 'modal';
             modal.innerHTML = `
-
                 <div class="modal-content">
-                    
+                    <span class="close-button" onclick="this.parentElement.parentElement.remove()">&times;</span>
                     <img src="${image}" alt="${label}">
                     <h3>${label}</h3>
                     <p>${description}</p>
