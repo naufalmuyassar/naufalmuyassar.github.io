@@ -47,6 +47,7 @@
             border-radius: 8px;
             box-shadow: 0 3px 6px rgba(0,0,0,0.1);
             text-align: center;
+            position: relative;
         }
         .product img {
             width: 100%;
@@ -55,21 +56,19 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        .product h3, .product p {
-            margin: 10px 0;
-        }
-        .product .button {
-            display: inline-block;
-            width: 100%;
-            margin-top: 10px;
-            background-color: #28a745;
+        .detail-box {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            background: #007bff;
             color: white;
-            padding: 10px;
-            border: none;
+            text-align: center;
+            line-height: 30px;
             border-radius: 5px;
             cursor: pointer;
-            text-align: center;
-            text-decoration: none;
+            font-weight: bold;
         }
         .modal {
             display: none;
@@ -90,29 +89,16 @@
             text-align: center;
             position: relative;
         }
-        .modal input, .modal select {
-            width: calc(100% - 20px);
-            padding: 8px;
-            margin-top: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .modal .button-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-        }
-        .modal button {
-            width: 48%;
-            background-color: #007bff;
+        .modal .close-button {
+            background-color: red;
             color: white;
-            padding: 10px;
+            padding: 5px 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-        }
-        .modal .close-button {
-            background-color: red;
+            position: absolute;
+            top: 10px;
+            right: 10px;
         }
     </style>
     <script>
@@ -123,17 +109,14 @@
         function closeForm() {
             document.getElementById("orderForm").style.display = "none";
         }
-        function sendToWhatsApp() {
-            var name = document.getElementById("name").value;
-            var category = document.getElementById("category").value;
-            var quantity = document.getElementById("quantity").value;
-            var address = document.getElementById("address").value;
-            
-            var message = `Halo, saya ingin memesan produk anda:\nNama: ${name}\nProduk: ${category}\nJumlah: ${quantity}\nAlamat: ${address}`;
-            var phoneNumber = "62089678428381";
-            var url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            
-            window.location.href = url;
+        function showDetails(productName, price, image) {
+            document.getElementById("detailImage").src = image;
+            document.getElementById("detailTitle").innerText = productName;
+            document.getElementById("detailPrice").innerText = "Harga: Rp " + price;
+            document.getElementById("detailModal").style.display = "flex";
+        }
+        function closeDetails() {
+            document.getElementById("detailModal").style.display = "none";
         }
     </script>
 </head>
@@ -150,41 +133,40 @@
         <div class="products">
             <div class="product">
                 <img src="https://naufalmuyassar.github.io/img/prodak/prodak1.jpg" alt="PRODUK01">
+                <div class="detail-box" onclick="showDetails('PRODUK01', '100000', 'https://naufalmuyassar.github.io/img/prodak/prodak1.jpg')">i</div>
                 <h3>PRODUK01</h3>
                 <p><strong>Rp 100000</strong></p>
                 <button class="button" onclick="openForm('PRODUK01')">Beli Sekarang</button>
             </div>
             <div class="product">
                 <img src="https://naufalmuyassar.github.io/img/prodak/prodak2.jpg" alt="PRODUK02">
+                <div class="detail-box" onclick="showDetails('PRODUK02', '200000', 'https://naufalmuyassar.github.io/img/prodak/prodak2.jpg')">i</div>
                 <h3>PRODUK02</h3>
                 <p><strong>Rp 200000</strong></p>
                 <button class="button" onclick="openForm('PRODUK02')">Beli Sekarang</button>
             </div>
             <div class="product">
                 <img src="https://naufalmuyassar.github.io/img/prodak/prodak3.jpg" alt="PRODUK03">
+                <div class="detail-box" onclick="showDetails('PRODUK03', '300000', 'https://naufalmuyassar.github.io/img/prodak/prodak3.jpg')">i</div>
                 <h3>PRODUK03</h3>
                 <p><strong>Rp 300000</strong></p>
                 <button class="button" onclick="openForm('PRODUK03')">Beli Sekarang</button>
             </div>
             <div class="product">
                 <img src="https://naufalmuyassar.github.io/img/prodak/prodak4.jpg" alt="PRODUK04">
+                <div class="detail-box" onclick="showDetails('PRODUK04', '400000', 'https://naufalmuyassar.github.io/img/prodak/prodak4.jpg')">i</div>
                 <h3>PRODUK04</h3>
                 <p><strong>Rp 400000</strong></p>
                 <button class="button" onclick="openForm('PRODUK04')">Beli Sekarang</button>
             </div>
         </div>
     </main>
-    <div id="orderForm" class="modal">
+    <div id="detailModal" class="modal">
         <div class="modal-content">
-            <h2>Form Pemesanan</h2>
-            <input type="text" id="name" placeholder="Nama Pemesan">
-            <input type="text" id="category" readonly>
-            <input type="number" id="quantity" placeholder="Jumlah Pesanan" min="1">
-            <input type="text" id="address" placeholder="Alamat Pemesan">
-            <div class="button-container">
-                <button onclick="closeForm()">Close</button>
-                <button onclick="sendToWhatsApp()">Kirim Pesanan</button>
-            </div>
+            <button class="close-button" onclick="closeDetails()">X</button>
+            <h2 id="detailTitle"></h2>
+            <img id="detailImage" src="" alt="Detail Produk" style="width: 100%; height: auto;">
+            <p id="detailPrice"></p>
         </div>
     </div>
 </body>
