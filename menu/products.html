@@ -28,37 +28,12 @@
         .logo-container img {
             width: 50px;
         }
-        .categories-container {
-            margin-top: 70px;
-            text-align: center;
-            padding: 15px;
-            background: #333;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-        .category {
-            
-    	    border-style: solid;
-            color: #fff;
-            padding: 10px 20px;
-            margin: 5px;
-            border-radius: 6px;
-            cursor: pointer;
-            display: inline-block;
-            font-size: 14px;
-            font-weight: bold;
-            transition: background 0.3s ease-in-out, transform 0.2s;
-        }
-        .category:hover {
-            background: #0056b3;
-            transform: scale(1.1);
-        }
         .products {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 20px;
             padding: 20px;
-            margin-top: 20px;
+            margin-top: 100px;
         }
         .product {
             background: white;
@@ -134,7 +109,6 @@
                 
                 if (data.values && data.values.length > 0) {
                     allProducts = data.values;
-                    renderCategories();
                     renderProducts(allProducts);
                 }
             } catch (error) {
@@ -142,38 +116,38 @@
             }
         }
         
-        function renderCategories() {
-            const categoryContainer = document.getElementById('categories');
-            categoryContainer.innerHTML = '<span class="category" onclick="renderProducts(allProducts)">All</span>';
-            const categories = new Set(allProducts.map(row => row[4]));
-            
-            categories.forEach(category => {
-                const categoryHTML = `<span class="category" onclick="filterCategory('${category}')">${category}</span>`;
-                categoryContainer.innerHTML += categoryHTML;
-            });
-        }
-        
         function renderProducts(products) {
             const container = document.getElementById('products');
             container.innerHTML = '';
             
             products.forEach(row => {
-                const productLabel = row[0] || 'Label Produk';
-                const productPrice = row[1] || 'Harga Tidak Tersedia';
-                const productDesc = row[2] || 'Deskripsi Tidak Tersedia';
-                const productImage = row[3] || 'https://via.placeholder.com/250';
-                
                 const productHTML = `
                     <div class="product">
-                        <img src="${productImage}" alt="${productLabel}">
-                        <h3>${productLabel}</h3>
-                        <div class="info-icon" onclick="showDetails('${productLabel}', '${productPrice}', '${productImage}', '${productDesc}')">
+                        <img src="${row[3]}" alt="${row[0]}">
+                        <h3>${row[0]}</h3>
+                        <div class="info-icon" onclick="showDetails('${row[0]}', '${row[1]}', '${row[3]}', '${row[2]}')">
                             <i class="fa-solid fa-circle-info"></i>
                         </div>
                     </div>
                 `;
                 container.innerHTML += productHTML;
             });
+        }
+        
+        function showDetails(label, price, image, description) {
+            let modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close-button" onclick="this.parentElement.parentElement.remove()">&times;</span>
+                    <img src="${image}" alt="${label}">
+                    <h3>${label}</h3>
+                    <p>${description}</p>
+                    <p><strong>Harga:</strong> ${price}</p>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            modal.style.display = 'block';
         }
         
         window.onload = fetchProducts;
@@ -188,9 +162,6 @@
             <span class="logo">Online Store</span>
         </div>
     </header>
-    <div class="categories-container">
-        <div class="categories" id="categories"></div>
-    </div>
     <main>
         <div class="products" id="products"></div>
     </main>
