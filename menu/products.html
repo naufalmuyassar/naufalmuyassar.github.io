@@ -29,19 +29,20 @@
             width: 50px;
         }
         .categories-container {
-            margin-top: 60px;
+            margin-top: 70px;
             text-align: center;
             padding: 15px;
-            background: #fff;
+            background: #333;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
         }
         .category {
-            background: #007bff;
+            
+    	    border-style: solid;
             color: #fff;
             padding: 10px 20px;
             margin: 5px;
-            border-radius: 20px;
+            border-radius: 6px;
             cursor: pointer;
             display: inline-block;
             font-size: 14px;
@@ -173,27 +174,6 @@
                 `;
                 container.innerHTML += productHTML;
             });
-        }
-        
-        function filterCategory(category) {
-            const filteredProducts = allProducts.filter(row => row[4] === category);
-            renderProducts(filteredProducts);
-        }
-        
-        function showDetails(label, price, image, description) {
-            let modal = document.createElement('div');
-            modal.className = 'modal';
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <span class="close-button" onclick="this.parentElement.parentElement.remove()">&times;</span>
-                    <img src="${image}" alt="${label}">
-                    <h3>${label}</h3>
-                    <p>${description}</p>
-                    <p><strong>Harga:</strong> ${price}</p>
-                </div>
-            `;
-            document.body.appendChild(modal);
-            modal.style.display = 'block';
         }
         
         window.onload = fetchProducts;
